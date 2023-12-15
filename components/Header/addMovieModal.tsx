@@ -8,7 +8,6 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { getUserByEmail } from '@/services/user.services';
 import { UserType } from '../../context/userContext';
 import { uploadRequest } from '@/services/request.services';
-import { getAccessToken } from '@auth0/nextjs-auth0';
 import Genre from '../Home/updateMovieModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -23,7 +22,6 @@ interface AddMovieModalProps {
 interface Genre {
   genre: {
     name: string;
-    id: string;
   };
 }
 
@@ -31,7 +29,7 @@ export interface MovieData {
   name: string;
   poster_image: string;
   score: string;
-  genres: Genre[];
+  genres: [];
 }
 
 const AddMovieModal: React.FC<AddMovieModalProps> = ({ isOpen, onRequestClose, onCloseAndAddMovie }) => {
@@ -59,7 +57,7 @@ const AddMovieModal: React.FC<AddMovieModalProps> = ({ isOpen, onRequestClose, o
     };
 
     fetchData();
-  }, [user, getAccessToken, setCurrentLoggedUser]);
+  }, [user, setCurrentLoggedUser]);
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -89,45 +87,46 @@ const AddMovieModal: React.FC<AddMovieModalProps> = ({ isOpen, onRequestClose, o
     }
 };
 
-  const handleSaveMovie = async () => {
-   
-    try {
-      if (!user || !user.email) {
-        console.error('User or user email is undefined.');
-        return;
-      }
+const handleSaveMovie = async () => {
+  try {
+    if (!user || !user.email) {
+      console.error('User or user email is undefined.');
+      return;
+    }
 
-      const userByEmail = await getUserByEmail(user.email);
-  
-      if (!userByEmail) {
-        console.error('Error fetching user by email');
-        return;
-      }
+    const userByEmail = await getUserByEmail(user.email);
 
-      const cloudinaryImageUrl = await uploadRequest(file);
-  
-      const newMovie = await addMovieToUser(
-        userByEmail[0].id,
-        {
-          ...movieData,
-          genres: movieData.genres.map((genre: Genre) => genre),
-          poster_image: cloudinaryImageUrl,
-        }
-      );
-  
-      if (newMovie) {
-        onCloseAndAddMovie(newMovie);
-        onRequestClose();
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
-      } else {
-        console.error('Error at save movie');
+    if (!userByEmail || !userByEmail[1]) {
+      console.error('Error fetching user by email');
+      return;
+    }
+
+    const userId = userByEmail[1].id;
+
+    const cloudinaryImageUrl = await uploadRequest(file);
+
+    const newMovie = await addMovieToUser(
+      userId,
+      {
+        ...movieData,
+        genres: movieData.genres.map((genre: string) => ({ name: genre })),
+        poster_image: cloudinaryImageUrl,
       }
-    } catch (error) {
-      console.error('Error in the process', error);
-    };
+    );
+
+    if (newMovie) {
+      onCloseAndAddMovie(newMovie[0]);
+      onRequestClose();
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
+    } else {
+      console.error('Error at save movie');
+    }
+  } catch (error) {
+    console.error('Error in the process', error);
   };
+};
   
   return (
     <div className={`modal fade ${isOpen ? 'show' : ''}`} style={{ display: isOpen ? 'block' : 'none' }}>

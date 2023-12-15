@@ -1,5 +1,3 @@
-'use client'
-
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import '../Footer/footer.css'
 

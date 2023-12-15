@@ -42,10 +42,16 @@ const UpdateMovieModal: React.FC<UpdateMovieModalProps> = ({
     selectedMovie,
 }) => {
   const [movieData, setMovieData] = useState<MovieData>(initialMovieData);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    setMovieData(initialMovieData);
-  }, [initialMovieData]);
+    if (isOpen && !isModalOpen) {
+      setMovieData(initialMovieData);
+      setIsModalOpen(true);
+    } else if (!isOpen && isModalOpen) {
+      setIsModalOpen(false);
+    }
+  }, [isOpen, isModalOpen, initialMovieData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -74,8 +80,8 @@ const UpdateMovieModal: React.FC<UpdateMovieModalProps> = ({
             console.error('No movie selected');
             return;
           }
-
-      const response = await fetch(`${process.env.VITE_API_URL}movie/${selectedMovie?.id || ''}`, {
+      const url = process.env.NEXT_PUBLIC_API_URL;
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/movie/${selectedMovie?.id || ''}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

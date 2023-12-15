@@ -52,12 +52,12 @@ export const getUserByEmail = async (userEmail: string) => {
 
 export const addMovieToUser = async (userId: string, movieData: any) => {
     const  url = process.env.NEXT_PUBLIC_API_URL;
+    console.log("movieData", movieData);
+    console.log("userId", userId);
     try {
-
-      const response = await fetch(`${url}movie/${userId}`, {
+      const response = await fetch(`${url}/movie/${userId}`, {
         method: "POST",
         headers: {
-
           "Content-type": "application/json; charset=UTF-8",
         },
         body: JSON.stringify(movieData),
@@ -69,7 +69,7 @@ export const addMovieToUser = async (userId: string, movieData: any) => {
       }
   
       const dataFetched = await response.json();
-      return dataFetched;
+      return  dataFetched;
     } catch (error) {
       console.error("Error adding movie to user:", error);
       return null;

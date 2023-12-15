@@ -56,13 +56,10 @@ const Home: React.FC = () => {
           setAuth0User(user);
 
           if (!userData) {
-            console.log('');
             return;
-        }
+          }
 
           const userId = userData[1].id;
-          console.log("user Id", userId);
-          console.log("user Data", userData);
           const url = process.env.NEXT_PUBLIC_API_URL;
           const response = await fetch(`${url}/movie/user/${userId}`, {
             method: "GET",
@@ -74,7 +71,6 @@ const Home: React.FC = () => {
           if (response.ok) {
             const userMovies = await response.json();
             setMoviesData(userMovies);
-            console.log('Movies Data:', userMovies);
           } else {
             console.error(`Error fetching user movies: ${response.statusText}`);
           }
@@ -87,11 +83,11 @@ const Home: React.FC = () => {
 
    const handleDelete = async (movieId: number) => {
      try {
-       const token = await getAccessToken();
-    const response = await fetch(`${import.meta.url}movie/${movieId}`, {
+      const url = process.env.NEXT_PUBLIC_API_URL;
+    const response = await fetch(`${url}/movie/${movieId}`, {
          method: 'DELETE',
          headers: {
-           Authorization: `Bearer ${token}`,
+           
          },
        });
 
@@ -195,7 +191,7 @@ const Home: React.FC = () => {
             poster_image: '',
             score: '',
             genres: [],
-          }} selectedMovie={null}      />
+          }} selectedMovie={selectedMovie}      />
       )} 
     </div>
   );
