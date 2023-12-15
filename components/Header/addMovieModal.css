@@ -1,0 +1,14 @@
+.modal-title{
+    color: rgb(0, 0, 0);
+    font-family: 'Oswald', sans-serif;
+    font-size: 3vh;
+}
+
+.modal-body{
+    color: black;
+    font-family: 'Oswald', sans-serif;
+}
+
+.modal-dialog{
+    font-family: 'Oswald', sans-serif;
+}

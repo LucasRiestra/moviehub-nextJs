@@ -1,0 +1,71 @@
+
+a {
+    font-weight: 500;
+    color: #0f113b;
+    text-decoration: inherit;
+  }
+  a:hover {
+    color: #bcc0ff;
+  }
+  
+  body{
+    background-image: url("https://res.cloudinary.com/dtqgzojs3/image/upload/v1700130351/5253cf935d176074e92fc1eb8ae9c30a_pyx0aa.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+    color: white;
+  }
+  
+  h3{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color:white
+  }
+
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover {
+    border-color:  #6d74ff;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: #213547;
+      background-color: #ffffff;
+    }
+    a{
+      color: white;
+    }
+  
+    a:hover {
+      border-color:  #6d74ff;
+    }
+    button {
+      background-color: #f9f9f9;
+    }
+  }
+  
+  .title{
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+  }
