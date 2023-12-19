@@ -15,7 +15,9 @@ export default function RootLayout({
     <html lang="en">
       <UserProvider>
         <UserContextProvider>
-          <body>{children}</body>       
+          <body>
+            {children}
+          </body>       
         </UserContextProvider>
       </UserProvider>
     </html>

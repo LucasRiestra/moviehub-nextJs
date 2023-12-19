@@ -3,15 +3,33 @@
       font-size: 12vh;
       color: rgb(31, 30, 30);
       margin: 0;
-      margin-top: 15vh;
+      margin-top: 6vh;
       margin-bottom: 1vh;
       font-family: 'Libre Bodoni', serif;
       font-style: italic;
       text-shadow: 1px 3px 5px rgb(84, 0, 0, 0.8);
   }
+
+  .homeTitle:hover{
+    color: #000000;
+  }
   
   a.movieLink{
     text-decoration: none;
+  }
+
+  .movieTitle {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-family:'Libre Bodoni', serif;
+    font-size: 4vh;
+    text-decoration: underline;
+  }
+
+  .movieTitle:hover{
+    color: #bcc0ff;
   }
   
   .listOfMovies{
@@ -79,7 +97,6 @@
   
   .noMovies{
     display: flex;
-    
     font-size: 5vh;
     color: rgb(255, 255, 255);
     margin-top: 15vh;

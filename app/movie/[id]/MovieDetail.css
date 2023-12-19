@@ -1,0 +1,67 @@
+movie-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    margin-top: 6vh;
+    color: white;
+  }
+
+  body{
+    background-image: url("https://res.cloudinary.com/dtqgzojs3/image/upload/v1700130351/5253cf935d176074e92fc1eb8ae9c30a_pyx0aa.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  h1{
+    font-size: 4vh;
+    color: white;
+    font-family: 'Libre Bodoni', serif;
+    text-shadow: #333 5px 5px 5px;
+  }
+
+  h1:hover{
+    color: #bcc0ff;
+  }
+  
+  .movie-detail-content {
+    text-align: center;
+    margin-top: 6vh;
+    color: white;
+  }
+
+  p{
+    font-size: 3vh;
+    color: white;
+    font-family: 'Libre Bodoni', serif;
+    text-shadow: #333 5px 5px 5px;
+  }
+
+  p:hover{
+    color: #bcc0ff;
+  }
+  
+  .movie-detail-img {
+    max-width: 100%;
+    height: 70vh;
+    padding-bottom: 0;
+    border-radius: 4vh;
+    margin-top: 2vh;
+  }
+
+  .button-go-back{
+    border-radius: 5vh;
+    background-color: #333;
+    font-size: 2vh;
+    color: whitesmoke;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    cursor: pointer;
+  }
+
+  .button-go-back:hover{
+    color: #bcc0ff,
+  }

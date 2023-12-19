@@ -32,16 +32,7 @@ export const getUserByEmail = async (userEmail: string) => {
                 "Content-type": "application/json; charset=UTF-8"
             }
         });
-
-        if (!response.ok) {
-            if (response.status === 404) {
-                console.warn(`User with email ${userEmail} not found.`);
-            } else {
-                console.error(`Error fetching user by email: ${response.statusText}`);
-            }
-            return null;
-        }
-
+        
         const dataFetched = await response.json();
         return [response, dataFetched];
     } catch (error) {

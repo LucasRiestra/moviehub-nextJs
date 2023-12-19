@@ -4,12 +4,11 @@ import React, {  useEffect, useState } from 'react';
 import styles from './home.module.css';
 import Header from '../../components/Header/header';
 import Link from 'next/link';
-import { getAccessToken } from '@auth0/nextjs-auth0';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import UpdateMovieModal from '../../components/Home/updateMovieModal';
 import { useUserContext } from '../../utils/useUserContext';
 import { UserType, userContext } from '../../context/userContext';
-import { getUserByEmail } from '@/services/user.services';
+import { createUser, getUserByEmail } from '@/services/user.services';
 import Footer from '@/components/Footer/footer';
 
 
@@ -41,19 +40,31 @@ const Home: React.FC = () => {
    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
    const { setCurrentLoggedUser } = useUserContext();
-   const [auth0User, setAuth0User] = useState<any>(null);
-   
-
-   useEffect(() => {
+  
+    useEffect(() => {
     (async function fetchUserData() {
       try {
         if (user?.email) {
           const userEmail = user.email;
-          const userData = await getUserByEmail(userEmail);
-          if (userData && userData.length > 0) {
-            setCurrentLoggedUser(userData[1] as UserType);
+          console.log('User email:', userEmail)
+          const userData = await getUserByEmail(user?.email);
+          const userInfo = userData && userData[1] as UserType;
+          console.log('User data:', userData);
+          if (userData && userData[1] !== null) {
+            if (userInfo) {
+              setCurrentLoggedUser(userInfo);
+            }
+          
+          } else {
+            const newUser = {
+              name: user.name,
+              email: user.email,
+              password: user.email,
+            }
+            const createdUser = await createUser(newUser);
+            setCurrentLoggedUser(createdUser); 
+            console.log('Created user:', createdUser)
           }
-          setAuth0User(user);
 
           if (!userData) {
             return;
@@ -140,7 +151,7 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <Header />
+      <Header/>
         <h1 className={styles.homeTitle}>List Of Movies</h1>
         <div className={styles.listOfMovies}>
         <section className={styles.movieGrid}>
@@ -149,7 +160,7 @@ const Home: React.FC = () => {
               <div key={movie.id} className={styles.movieCard}>
                 <Link href={`/movie/${movie.id}`} className={styles.movieLink}>
                   <img src={movie.poster_image} alt={movie.name} className={styles.moviePoster} />
-                  <h2>{movie.name}</h2>
+                  <h2 className={styles.movieTitle}>{movie.name}</h2>
                   <p>IMDb {movie.score}</p>
                   <p>
                     {movie.genres.map((genreObj, index) => (
@@ -175,7 +186,7 @@ const Home: React.FC = () => {
           )}
         </section>
       </div>
-       <Footer />
+      <Footer/>
         {isUpdateModalOpen && (
         <UpdateMovieModal
           isOpen={isUpdateModalOpen}
@@ -201,4 +212,3 @@ export default Home;
 function onCloseAndUpdateMovie(movieData: MovieData) {
   throw new Error('Function not implemented.');
 }
-
