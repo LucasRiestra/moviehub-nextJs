@@ -16,12 +16,13 @@ body {
     background-repeat: no-repeat;
   }
   
-  .login-title {
+  h1.login-title {
     font-size: 20vh;
-    color: #436078;
+    color: #002e53;
     text-align: center;
-    font-family: 'Libre Bodoni', serif;
-    text-shadow: 4px 4px 10px black ;
+    text-shadow: 4px 4px 10px #6d74ff;
+    margin: 0;
+    margin-bottom: 7vh;
   }
   
   .register-link {
@@ -38,5 +39,12 @@ body {
     margin: 1vh;
     margin-bottom: 30vh;
     box-shadow: 5px 5px 10px rgb(35, 35, 50);
+  }
+
+  p{
+    color: #002e53;
+    font-size: 2vh;
+    text-align: center;
+    text-shadow: 2px 2px 5px #6d74ff;
   }
   

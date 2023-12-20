@@ -1,74 +1,131 @@
-
 a {
-    font-weight: 500;
-    color: #0f113b;
-    text-decoration: inherit;
-  }
-  a:hover {
-    font-weight: 500;
-    color:  #e9eaff;
-    font-size: 2vh;
-  }
-  
-  body{
-    background-image: url("https://res.cloudinary.com/dtqgzojs3/image/upload/v1700130351/5253cf935d176074e92fc1eb8ae9c30a_pyx0aa.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  font-weight: 500;
+  color: #0f113b;
+  text-decoration: inherit;
+}
+
+body {
+  background-image: url("../assets/CineXpress-Light-Background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.4s;
+  background-attachment: fixed;
+}
+
+body.dark-mode {
+  transition: background-image 0.4s;
+  background-image: url("../assets/CineXpress-Dark-Background.png");
+}
+
+body.dark-mode .homeTitle,
+body.dark-mode .movieTitle,
+body.dark-mode .score,
+body.dark-mode .genre {
+  color: #e4e4e4;
+}
+
+h1 {
+  padding: 0;
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode p {
+  color: #e4e4e4;
+}
+
+h3 {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #6d74ff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
   }
 
-
-  h1 {
-    padding: 0;
-    font-size: 3.2em;
-    line-height: 1.1;
+  a {
     color: white;
   }
-  
-  h3{
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    color:white
+
+  a:hover {
+    border-color: #17181e;
   }
 
   button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: border-color 0.25s;
+    background-color: #f9f9f9;
   }
-  button:hover {
-    border-color:  #6d74ff;
+}
+
+.title {
+  color: black;
+}
+
+.spinner {
+  width: 112px;
+  height: 112px;
+  display: grid;
+  border: 9px solid #0000;
+  border-radius: 50%;
+  border-color: #dbdcef #0000;
+  animation: spinner-e04l1k 1s infinite linear;
+
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2.2px;
+  border: inherit;
+  border-radius: 50%;
+}
+
+.spinner::before {
+  border-color: #474bff #0000;
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+
+.spinner::after {
+  margin: 8.9px;
+}
+
+@keyframes spinner-e04l1k {
+  100% {
+    transform: rotate(1turn);
   }
-  button:focus,
-  button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-  
-  @media (prefers-color-scheme: light) {
-    :root {
-      color: #213547;
-      background-color: #ffffff;
-    }
-    a{
-      color: white;
-    }
-  
-    a:hover {
-      border-color:  #17181e;
-    }
-    button {
-      background-color: #f9f9f9;
-    }
-  }
-  
-  .title{
-    color: black;
-    font-family: 'Courier New', Courier, monospace;
-  }
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

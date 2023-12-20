@@ -49,16 +49,18 @@ const MovieDetail = ({params}: { params: { id: number } }) => {
     <div className="movie-detail-container">
       <div className="movie-detail-content">
         <img className="movie-detail-img" src={movie.poster_image} alt={movie.name} />
-        <h1>{movie.name}</h1>
-        <p>IMDb {movie.score}</p>
-        <p>
-          {movie.genres && movie.genres.map((genreObj, index) => (
-            <span key={index}>
-              {genreObj.genre ? genreObj.genre.name : ''}
-              {index < movie.genres.length - 1 ? ', ' : ''}
-            </span>
-          ))}
-        </p>
+        <div className='movie-details-wrapper'>
+          <h1 className='movieTitle'>{movie.name}</h1>
+          <p className='score'>IMDb {movie.score}</p>
+          <p className='genre'>
+            {movie.genres && movie.genres.map((genreObj, index) => (
+              <span key={index}>
+                {genreObj.genre ? genreObj.genre.name : ''}
+                {index < movie.genres.length - 1 ? ', ' : ''}
+              </span>
+            ))}
+          </p>
+        </div>
         <div>
           <Link href="/home">
             <button className="button-go-back">Go Back</button>

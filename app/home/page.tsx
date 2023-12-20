@@ -1,13 +1,13 @@
 'use client';
 
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './home.module.css';
 import Header from '../../components/Header/header';
 import Link from 'next/link';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import UpdateMovieModal from '../../components/Home/updateMovieModal';
 import { useUserContext } from '../../utils/useUserContext';
-import { UserType, userContext } from '../../context/userContext';
+import { UserType } from '../../context/userContext';
 import { createUser, getUserByEmail } from '@/services/user.services';
 import Footer from '@/components/Footer/footer';
 
@@ -31,17 +31,17 @@ export interface MovieData {
   name: string;
   poster_image: string;
   score: string;
-  genres: string[]; 
+  genres: string[];
 }
 
 const Home: React.FC = () => {
-   const { user } = useUser();
-   const [moviesData, setMoviesData] = useState<Movie[]>([]);
-   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-   const { setCurrentLoggedUser } = useUserContext();
-  
-    useEffect(() => {
+  const { user, isLoading } = useUser();
+  const [moviesData, setMoviesData] = useState<Movie[]>([]);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const { setCurrentLoggedUser } = useUserContext();
+
+  useEffect(() => {
     (async function fetchUserData() {
       try {
         if (user?.email) {
@@ -54,7 +54,7 @@ const Home: React.FC = () => {
             if (userInfo) {
               setCurrentLoggedUser(userInfo);
             }
-          
+
           } else {
             const newUser = {
               name: user.name,
@@ -62,7 +62,7 @@ const Home: React.FC = () => {
               password: user.email,
             }
             const createdUser = await createUser(newUser);
-            setCurrentLoggedUser(createdUser); 
+            setCurrentLoggedUser(createdUser);
             console.log('Created user:', createdUser)
           }
 
@@ -92,40 +92,40 @@ const Home: React.FC = () => {
     })();
   }, [user]);
 
-   const handleDelete = async (movieId: number) => {
-     try {
+  const handleDelete = async (movieId: number) => {
+    try {
       const url = process.env.NEXT_PUBLIC_API_URL;
-    const response = await fetch(`${url}/movie/${movieId}`, {
-         method: 'DELETE',
-         headers: {
-           
-         },
-       });
+      const response = await fetch(`${url}/movie/${movieId}`, {
+        method: 'DELETE',
+        headers: {
 
-       if (response.ok) {
-         setMoviesData((prevMovies) => prevMovies.filter((movie) => movie.id !== movieId));
-       } else {
-         console.error('Error deleting movie:', response.statusText);
-       }
-     } catch (error) {
-       console.error('Error deleting movie:', error);
-     }
-   };
+        },
+      });
 
-   const handleUpdate = (movieId: number) => {
-     const movieToUpdate = moviesData.find((movie) => movie.id === movieId);
-     if (movieToUpdate) {
-       setSelectedMovie(movieToUpdate);
-       setIsUpdateModalOpen(true);
-     }
-   };
+      if (response.ok) {
+        setMoviesData((prevMovies) => prevMovies.filter((movie) => movie.id !== movieId));
+      } else {
+        console.error('Error deleting movie:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting movie:', error);
+    }
+  };
 
-   const handleUpdateModalClose = () => {
-     setIsUpdateModalOpen(false);
-     setSelectedMovie(null);
-   };
+  const handleUpdate = (movieId: number) => {
+    const movieToUpdate = moviesData.find((movie) => movie.id === movieId);
+    if (movieToUpdate) {
+      setSelectedMovie(movieToUpdate);
+      setIsUpdateModalOpen(true);
+    }
+  };
 
-   function onCloseAndUpdateMovie(movieData: MovieData | null) {
+  const handleUpdateModalClose = () => {
+    setIsUpdateModalOpen(false);
+    setSelectedMovie(null);
+  };
+
+  function onCloseAndUpdateMovie(movieData: MovieData | null) {
     if (movieData === null) {
       console.log('Movie update canceled.');
     } else {
@@ -149,20 +149,28 @@ const Home: React.FC = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className='spinner-container'>
+        <div className="spinner"></div>
+      </div>
+    )
+  }
+
   return (
-    <div>
-      <Header/>
-        <h1 className={styles.homeTitle}>List Of Movies</h1>
-        <div className={styles.listOfMovies}>
+    <div className={styles.body}>
+      <Header />
+      <h1 className={`${styles.homeTitle}`}>List Of Movies</h1>
+      <div className={styles.listOfMovies}>
         <section className={styles.movieGrid}>
           {moviesData.length > 0 ? (
             moviesData.map((movie) => (
               <div key={movie.id} className={styles.movieCard}>
                 <Link href={`/movie/${movie.id}`} className={styles.movieLink}>
                   <img src={movie.poster_image} alt={movie.name} className={styles.moviePoster} />
-                  <h2 className={styles.movieTitle}>{movie.name}</h2>
-                  <p>IMDb {movie.score}</p>
-                  <p>
+                  <h2 className={`${styles.movieTitle}`}>{movie.name}</h2>
+                  <p className={`${styles.score}`}>IMDb {movie.score}</p>
+                  <p className={`${styles.genre}`}>
                     {movie.genres.map((genreObj, index) => (
                       <span key={index}>
                         {typeof genreObj === 'string' ? genreObj : (genreObj.genre && genreObj.genre.name) || ''}
@@ -186,8 +194,8 @@ const Home: React.FC = () => {
           )}
         </section>
       </div>
-      <Footer/>
-        {isUpdateModalOpen && (
+      <Footer />
+      {isUpdateModalOpen && (
         <UpdateMovieModal
           isOpen={isUpdateModalOpen}
           onRequestClose={handleUpdateModalClose}
@@ -202,8 +210,8 @@ const Home: React.FC = () => {
             poster_image: '',
             score: '',
             genres: [],
-          }} selectedMovie={selectedMovie}      />
-      )} 
+          }} selectedMovie={selectedMovie} />
+      )}
     </div>
   );
 };

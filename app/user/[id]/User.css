@@ -1,0 +1,57 @@
+.user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+  }
+  
+  .user-profile {
+    border-radius: 50%;
+    width: 30vh;
+    height: 30vh;
+    object-fit: cover;
+  }
+  
+  .user-info {
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-name{
+    font-size: 6vh;
+    color: rgb(35, 35, 36);
+    text-shadow: #b0b0b083 5px 5px 5px;
+  }
+
+  .user-email{
+    font-size: 6vh;
+    color: rgb(35, 35, 36);
+    text-shadow: #b0b0b067 5px 5px 5px;
+  }
+  
+  .edit-button {
+    background-color: #003772;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5vh;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+ 
+  .go-back-button{
+        color: aliceblue;
+        border-radius: 20px;
+        border: 1px solid transparent;
+        border-radius: 5vh;
+        font-size: 1em;
+        font-weight: 500;
+        background-color: #1a1a1a;
+        cursor: pointer;
+        transition: border-color 0.25s;
+        margin-top: 2vh;
+      }
