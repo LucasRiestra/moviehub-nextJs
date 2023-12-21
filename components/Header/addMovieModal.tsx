@@ -10,6 +10,7 @@ import { UserType } from '../../context/userContext';
 import { uploadRequest } from '@/services/request.services';
 import Genre from '../Home/updateMovieModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import toast from 'react-hot-toast';
 
 interface AddMovieModalProps {
   isOpen: boolean;
@@ -113,6 +114,9 @@ const handleSaveMovie = async () => {
       }
     );
     setIsLoading(true);
+    toast.success("Movie created successfully", {
+      duration: 3000,
+    });
     if (newMovie) {
       onCloseAndAddMovie(newMovie[0]);
       onRequestClose();

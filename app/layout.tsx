@@ -5,6 +5,7 @@ import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { UserContextProvider } from '@/context/userContext';
 import { Bebas_Neue } from 'next/font/google';
 import { DarkModeProvider } from '@/context/darkModeContext';
+import { Toaster } from 'react-hot-toast';
 
 const font = Bebas_Neue ({
   subsets: ['latin'],
@@ -21,6 +22,7 @@ export default function RootLayout({
       <DarkModeProvider>
         <UserContextProvider>
             <body className={font.className}>
+            <Toaster />
             {children}
           </body>       
         </UserContextProvider>

@@ -10,6 +10,8 @@ import { useUserContext } from '../../utils/useUserContext';
 import { UserType } from '../../context/userContext';
 import { createUser, getUserByEmail } from '@/services/user.services';
 import Footer from '@/components/Footer/footer';
+import { toast } from 'react-hot-toast';
+
 
 
 interface Genre {
@@ -94,6 +96,9 @@ const Home: React.FC = () => {
 
   const handleDelete = async (movieId: number) => {
     try {
+      toast.success("Movie deleted successfully!", {
+        duration: 1000,
+      });
       const url = process.env.NEXT_PUBLIC_API_URL;
       const response = await fetch(`${url}/movie/${movieId}`, {
         method: 'DELETE',
@@ -103,7 +108,7 @@ const Home: React.FC = () => {
       });
 
       if (response.ok) {
-        setMoviesData((prevMovies) => prevMovies.filter((movie) => movie.id !== movieId));
+        setMoviesData((prevMovies) => prevMovies.filter((movie) => movie.id !== movieId))
       } else {
         console.error('Error deleting movie:', response.statusText);
       }
@@ -143,6 +148,9 @@ const Home: React.FC = () => {
         genres: selectedMovie.genres.map(genreObj => typeof genreObj === 'string' ? genreObj : genreObj.genre.name),
       };
       onCloseAndUpdateMovie(movieData);
+      toast.success("Movie updated successfully!", {
+        duration: 2000,
+      });
     } else {
       console.log('Movie update canceled.');
       onCloseAndUpdateMovie(null);
