@@ -66,4 +66,3 @@ export const addMovieToUser = async (userId: string, movieData: any) => {
       return null;
     }
 };
-
