@@ -1,7 +1,7 @@
-// app/api/auth/[...nextauth].js
+// app/api/auth/[auth0]/route.js
 import { handleAuth, handleLogin, handleLogout } from '@auth0/nextjs-auth0';
 
-export default handleAuth({
+export const GET = handleAuth({
     login: handleLogin({
         authorizationParams: {
           audience: "http://localhost:4001/"
@@ -11,4 +11,4 @@ export default handleAuth({
       logout: handleLogout({
         returnTo: '/home',
       }),
-});
+    });
