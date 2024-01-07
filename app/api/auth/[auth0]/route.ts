@@ -7,9 +7,6 @@ export const GET = handleAuth({
         authorizationParams: {
           audience: "http://localhost:4001/"
         },
-        returnTo: "/home"
-      }),
-      logout: handleLogout({
-        returnTo: '/home',
-      }),
+        returnTo: "/"
+      })
     });
