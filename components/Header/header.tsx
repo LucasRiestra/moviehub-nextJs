@@ -37,7 +37,7 @@ const Header = () => {
     setIsReloading(true);
     setTimeout(() => {
       window.location.href = '/home';
-    }, 1000);
+    }, 100);
   };
 
   const handleToggleChange = () => {
