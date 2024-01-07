@@ -15,14 +15,14 @@ const Header = () => {
   const { isDarkMode, setIsDarkMode } = useDarkMode();
 
 
-  useEffect(() => {
-    const isReloading = localStorage.getItem('isReloading');
-    setIsReloading(isReloading === 'true');
-  }, []);
+  // useEffect(() => {
+  //   const isReloading = localStorage.getItem('isReloading');
+  //   setIsReloading(isReloading === 'true');
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem('isReloading', String(isReloading));
-  }, [isReloading]);
+  // useEffect(() => {
+  //   localStorage.setItem('isReloading', String(isReloading));
+  // }, [isReloading]);
 
   const openModal = () => {
     setShowModal(true);
