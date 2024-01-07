@@ -1,5 +1,6 @@
 'use client';
 
+
 export const createUser = async (userObject: {}) => {
     const  url = process.env.NEXT_PUBLIC_API_URL;
     try {
