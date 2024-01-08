@@ -90,13 +90,9 @@
     color: rgb(47, 48, 55);
     margin-top: 5vh;
     margin-bottom: 5vh;
-    text-shadow: 1px 3px 5px rgb(84, 0, 0, 0.8);
+    text-shadow: 1px 3px 5px rgba(0, 42, 84, 0.8);
     grid-column: 2;
     padding-left: 43vh;
-  }
-
-  .noMovies.dark-mode {
-    color: rgb(223, 223, 223);
   }
 
   .score {
@@ -112,6 +108,7 @@
   .homeTitle.dark-mode,
   .movieTitle.dark-mode,
   .score.dark-mode,
-  .genre.dark-mode {
+  .genre.dark-mode,
+  .noMovies.dark-mode {
     color: white;
   }
