@@ -6,3 +6,9 @@
 .modal-body{
     color: black;
 }
+
+
+.modal-body, .modal-title.dark-mode{
+    color: white;
+    background-color: rgb(3, 3, 3);    
+}
