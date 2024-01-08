@@ -87,7 +87,7 @@
 
   .noMovies {
     font-size: 6vh;
-    color: rgb(117, 133, 255);
+    color: rgba(34, 60, 255, 0.677);
     margin-top: 5vh;
     margin-bottom: 5vh;
     text-shadow: 1px 3px 5px rgba(0, 42, 84, 0.8);
