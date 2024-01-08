@@ -129,3 +129,7 @@ button:focus-visible {
   align-items: center;
   height: 100vh;
 }
+
+.noMovies.dark-mode {
+  color: white;
+}

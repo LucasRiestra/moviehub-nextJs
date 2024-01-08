@@ -95,6 +95,10 @@
     padding-left: 43vh;
   }
 
+  .noMovies.dark-mode {
+    color: white;
+  }
+
   .score {
     color: rgb(45, 45, 45);
     font-size: 3vh;
@@ -110,5 +114,5 @@
   .score.dark-mode,
   .genre.dark-mode,
   .noMovies.dark-mode {
-    color: white !important;
+    color: white
   }
