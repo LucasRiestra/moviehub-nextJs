@@ -110,5 +110,5 @@
   .score.dark-mode,
   .genre.dark-mode,
   .noMovies.dark-mode {
-    color: white;
+    color: white !important;
   }
