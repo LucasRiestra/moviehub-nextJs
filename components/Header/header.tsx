@@ -61,7 +61,6 @@ const Header = () => {
     setIsDarkMode(isDarkMode === 'true');
   }, []);
 
-  if (isLoading || isReloading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
   return (

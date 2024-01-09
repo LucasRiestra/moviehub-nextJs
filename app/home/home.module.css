@@ -87,14 +87,14 @@
 
   .noMovies {
     font-size: 6vh;
-    color: rgb(255, 255, 255);
+    color: rgba(34, 60, 255, 0.677);
     margin-top: 5vh;
     margin-bottom: 5vh;
-    text-shadow: 1px 3px 5px rgb(84, 0, 0, 0.8);
+    text-shadow: 1px 3px 5px rgba(0, 42, 84, 0.8);
     grid-column: 2;
     padding-left: 43vh;
   }
-
+  
   .score {
     color: rgb(45, 45, 45);
     font-size: 3vh;
@@ -108,6 +108,7 @@
   .homeTitle.dark-mode,
   .movieTitle.dark-mode,
   .score.dark-mode,
-  .genre.dark-mode {
-    color: white;
+  .genre.dark-mode,
+  .noMovies.dark-mode {
+    color: white
   }

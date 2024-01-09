@@ -12,8 +12,6 @@ import { createUser, getUserByEmail } from '@/services/user.services';
 import Footer from '@/components/Footer/footer';
 import { toast } from 'react-hot-toast';
 
-
-
 interface Genre {
   genre: {
     name: string;
