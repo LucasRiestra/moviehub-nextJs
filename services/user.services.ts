@@ -42,6 +42,7 @@ export const getUserByEmail = async (userEmail: string) => {
     }
 }
 
+
 export const addMovieToUser = async (userId: string, movieData: any) => {
     const  url = process.env.NEXT_PUBLIC_API_URL;
     console.log("movieData", movieData);
