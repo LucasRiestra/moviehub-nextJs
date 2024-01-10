@@ -49,8 +49,9 @@ body {
   }
   
 
-  @media screen and (max-width: 500px) and (max-height: 500px) {
-    h1.login-title {
-      font-size: 10vh;
-    }
+  @media screen and (max-width: 500px) and (max-height: 900px) {
+      h1.login-title {
+    font-size: 12vh;
+  }
+
   }
