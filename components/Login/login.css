@@ -48,3 +48,9 @@ body {
     text-shadow: 2px 2px 5px #6d74ff;
   }
   
+
+  @media screen and (width: 414px) and (height: 824px) {
+    h1.login-title {
+      font-size: 10vh;
+    }
+  }
