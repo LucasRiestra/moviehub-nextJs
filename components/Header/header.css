@@ -291,5 +291,12 @@
       width: 100%;
       height: 10vh;
   }
+
+  .user-actions {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    color: white;
+    margin-right: 1vh;
   }
-  
+}
