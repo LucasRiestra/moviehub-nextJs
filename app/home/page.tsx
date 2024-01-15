@@ -221,3 +221,8 @@ export interface MovieData {
     </div>
   );
 };
+
+export default Home;
+function onCloseAndUpdateMovie(movieData: MovieData) {
+  throw new Error('Function not implemented.');
+}
