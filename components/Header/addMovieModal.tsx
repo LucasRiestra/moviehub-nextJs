@@ -196,7 +196,7 @@ const handleSaveMovie = async () => {
             <button type="button" className="btn btn-secondary" onClick={onRequestClose}>
               Close
             </button>
-            <button type="button" className="btn btn-primary" onClick={handleSaveMovie}>
+            <button data-testid="create-movie" type="button" className="btn btn-primary" onClick={handleSaveMovie}>
               Save Movie
             </button>
             {isLoading && (

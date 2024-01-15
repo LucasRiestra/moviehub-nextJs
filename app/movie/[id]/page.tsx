@@ -25,7 +25,7 @@ interface Movie {
   genres: Genre[];
 }
 
-const MovieDetail = ({params}: { params: { id: number } }) => {
+export const MovieDetail = ({params}: { params: { id: number } }) => {
   
   const [movie, setMovie] = useState<Movie | null>(null);
   
@@ -47,7 +47,7 @@ const MovieDetail = ({params}: { params: { id: number } }) => {
     <>
     <Header/>
     <div className="movie-detail-container">
-      <div className="movie-detail-content">
+      <div data-testid="movie-detail" className="movie-detail-content">
         <img className="movie-detail-img" src={movie.poster_image} alt={movie.name} />
         <div className='movie-details-wrapper'>
           <h1 className='movieTitle'>{movie.name}</h1>
