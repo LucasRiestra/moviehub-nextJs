@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { MovieDetail } from '@/app/movie/[id]/page';
 import '@testing-library/jest-dom';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
@@ -14,7 +14,7 @@ test('renders movie details', async () => {
         json: jest.fn().mockResolvedValue(mockApiResponse),
     });
 
-    render(
+    const { container } = render(
         <UserProvider>
             <MovieDetail params={{
                 id: 0
@@ -22,6 +22,10 @@ test('renders movie details', async () => {
         </UserProvider>
     );
 
-    const movieDetail = await waitFor(() => screen.getByTestId('movie-detail'));
+    await waitFor(() => {
+        expect(container.innerHTML).not.toContain('Loading...');
+    });
+
+    const movieDetail = container.querySelector('.movie-detail-content');
     expect(movieDetail).toBeInTheDocument();
 });

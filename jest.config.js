@@ -13,7 +13,10 @@ const config = {
   transformIgnorePatterns: [
     'node_modules/(?!(msw)/)', 
   ],
-  moduleDirectories: ['node_modules'], 
+  moduleDirectories: ['node_modules'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/services/$1',
+  },
 };
 
 module.exports = createJestConfig(config);
