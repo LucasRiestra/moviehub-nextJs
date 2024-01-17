@@ -8,13 +8,11 @@ import Header from '@/components/Header/header';
 
 global.fetch = jest.fn();
 
-// Mock the useUser function
 jest.mock('@auth0/nextjs-auth0/client', () => ({
   ...jest.requireActual('@auth0/nextjs-auth0/client'),
   useUser: jest.fn(),
 }));
 
-// Mock the uploadRequest function
 jest.mock('@/services/request.services', () => ({
   ...jest.requireActual('@/services/request.services'),
   uploadRequest: jest.fn(),
@@ -36,7 +34,6 @@ test('creates a movie and checks if it is created', async () => {
     json: jest.fn().mockResolvedValue(mockApiResponse),
   });
 
-  // Mock the useUser function to return the mockUser
   (require('@auth0/nextjs-auth0/client') as any).useUser.mockReturnValue({
     user: mockUser,
     error: null,
@@ -63,14 +60,12 @@ test('creates a movie and checks if it is created', async () => {
     );
   });
 
-  // Inside the modal, find the "Save Movie" button
   await act(async () => {
     const saveButtons = screen.getAllByTestId('create-movie');
     const saveButton = saveButtons[0];
     saveButton.click();
   });
 
-  // Check if the movie is created
   await waitFor(async () => {
     const nameInputs = await screen.findAllByTestId('name');
     expect(nameInputs.length).toBeGreaterThan(0);

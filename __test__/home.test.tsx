@@ -1,3 +1,5 @@
+//home.test.tsx
+
 import { render, waitFor, waitForElementToBeRemoved, screen } from '@testing-library/react';
 import Home from '@/app/home/page';
 import '@testing-library/jest-dom';
