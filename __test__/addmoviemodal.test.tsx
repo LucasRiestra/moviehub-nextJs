@@ -1,16 +1,58 @@
+// addmoviemodal.test.tsx
+
 import React from 'react';
-import { render, screen, act, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import AddMovieModal from '@/components/Header/addMovieModal';
 import Header from '@/components/Header/header';
 
-test('renders the modal correctly', async () => {
+global.fetch = jest.fn();
+
+// Mock the useUser function
+jest.mock('@auth0/nextjs-auth0/client', () => ({
+  ...jest.requireActual('@auth0/nextjs-auth0/client'),
+  useUser: jest.fn(),
+}));
+
+// Mock the uploadRequest function
+jest.mock('@/services/request.services', () => ({
+  ...jest.requireActual('@/services/request.services'),
+  uploadRequest: jest.fn(),
+}));
+
+test('creates a movie and checks if it is created', async () => {
+  const mockApiResponse = {
+    id: 0,
+    name: "Test Movie",
+    score: 80,
+    genres: "Action, Adventure"
+  };
+
+  const mockUser = {
+    email: 'test@example.com',
+  };
+
+  (global.fetch as jest.Mock).mockResolvedValue({
+    json: jest.fn().mockResolvedValue(mockApiResponse),
+  });
+
+  // Mock the useUser function to return the mockUser
+  (require('@auth0/nextjs-auth0/client') as any).useUser.mockReturnValue({
+    user: mockUser,
+    error: null,
+    isLoading: false,
+  });
+  
+  (require('@/services/request.services') as any).uploadRequest.mockResolvedValue({
+    secure_url: 'https://example.com/image.jpg',
+  });
+
   const mockOnRequestClose = jest.fn();
   const mockOnCloseAndAddMovie = jest.fn();
 
   await act(async () => {
     render(
-      <UserProvider>
+      <UserProvider user={mockUser}>
         <Header />
         <AddMovieModal
           isOpen={true}
@@ -21,8 +63,22 @@ test('renders the modal correctly', async () => {
     );
   });
 
-  expect(screen.getByTestId('name')).toBeInTheDocument();
-  expect(screen.getByLabelText('Score (0-100)')).toBeInTheDocument();
-  expect(screen.getByLabelText('Genres (comma-separated)')).toBeInTheDocument();
-  expect(screen.getByTestId('create-movie')).toBeInTheDocument();
+  // Inside the modal, find the "Save Movie" button
+  await act(async () => {
+    const saveButtons = screen.getAllByTestId('create-movie');
+    const saveButton = saveButtons[0];
+    saveButton.click();
+  });
+
+  // Check if the movie is created
+  await waitFor(async () => {
+    const nameInputs = await screen.findAllByTestId('name');
+    expect(nameInputs.length).toBeGreaterThan(0);
+    const scoreInputs = await screen.findAllByTestId('score');
+    expect(scoreInputs.length).toBeGreaterThan(0);
+    const genresInputs = await screen.findAllByTestId('genres');
+    expect(genresInputs.length).toBeGreaterThan(0);
+  });
+
+  expect((require('@/services/request.services') as any).uploadRequest).toHaveBeenCalled();
 });

@@ -8,7 +8,6 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { getUserByEmail } from '@/services/user.services';
 import { UserType } from '../../context/userContext';
 import { uploadRequest } from '@/services/request.services';
-import Genre from '../Home/updateMovieModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import toast from 'react-hot-toast';
 
@@ -176,6 +175,7 @@ const handleSaveMovie = async () => {
                   className="form-control"
                   id="score"
                   name="score"
+                  data-testid="score"
                   value={movieData.score}
                   onChange={handleInputChange}
                 />
@@ -187,6 +187,7 @@ const handleSaveMovie = async () => {
                   className="form-control"
                   id="genres"
                   name="genres"
+                  data-testid="genres"
                   value={movieData.genres.join(',')}
                   onChange={handleInputChange}
                           />

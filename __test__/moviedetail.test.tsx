@@ -1,3 +1,5 @@
+//movieDetail.test.tsx
+
 import { render, waitFor } from '@testing-library/react';
 import  MovieDetail from '@/app/movie/[id]/page';
 import '@testing-library/jest-dom';
@@ -28,4 +30,13 @@ test('renders movie details', async () => {
 
     const movieDetail = container.querySelector('.movie-detail-content');
     expect(movieDetail).toBeInTheDocument();
+
+    const movieTitle = container.querySelector('.movieTitle');
+    expect(movieTitle).toBeInTheDocument();
+
+    const score = container.querySelector('.score');
+    expect(score).toBeInTheDocument();
+    
+    const genre = container.querySelector('.genre');
+    expect(genre).toBeInTheDocument();
 });
