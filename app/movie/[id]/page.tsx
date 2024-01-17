@@ -25,7 +25,7 @@ interface Movie {
   genres: Genre[];
 }
 
-export const MovieDetail = ({params}: { params: { id: number } }) => {
+const MovieDetail = ({params}: { params: { id: number } }) => {
   
   const [movie, setMovie] = useState<Movie | null>(null);
   

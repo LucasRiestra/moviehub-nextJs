@@ -1,5 +1,5 @@
 import { render, waitFor } from '@testing-library/react';
-import { MovieDetail } from '@/app/movie/[id]/page';
+import  MovieDetail from '@/app/movie/[id]/page';
 import '@testing-library/jest-dom';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 
