@@ -85,7 +85,7 @@ const Header = () => {
         ) : (
           <Link href="/api/auth/login"><button className="sign-in-button">Log In</button></Link>
         )}
-        <button className="add-movie-button" onClick={openModal}>
+        <button data-testid="add-movie-button" className="add-movie-button" onClick={openModal}>
           <FaPlusCircle size={40} />
         </button>
         <Link href={`/user/${user?.name}`} className="user-icon-link">

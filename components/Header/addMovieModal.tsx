@@ -147,8 +147,9 @@ const handleSaveMovie = async () => {
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
+                  data-testid="name"
                   className="form-control"
-                  id="name"
+                  id="movie-name"
                   name="name"
                   value={movieData.name}
                   onChange={handleInputChange}

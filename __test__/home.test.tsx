@@ -1,5 +1,5 @@
-import { render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
-import { Home } from '@/app/home/page';
+import { render, waitFor, waitForElementToBeRemoved, screen } from '@testing-library/react';
+import Home from '@/app/home/page';
 import '@testing-library/jest-dom';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 

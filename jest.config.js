@@ -15,7 +15,8 @@ const config = {
   ],
   moduleDirectories: ['node_modules'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/services/$1',
+    '^@/services/(.*)$': '<rootDir>/services/$1',
+  '^@/utils/(.*)$': '<rootDir>/utils/$1',
   },
 };
 

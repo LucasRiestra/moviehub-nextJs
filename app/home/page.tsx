@@ -34,7 +34,7 @@ export interface MovieData {
   genres: string[];
 }
 
-  export const Home: React.FC = () => {
+  const Home: React.FC = () => {
   const { user, isLoading } = useUser();
   const [moviesData, setMoviesData] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
@@ -171,7 +171,7 @@ export interface MovieData {
         <section data-testid="movie-grid" className={styles.movieGrid}>
           {moviesData.length > 0 ? (
             moviesData.map((movie) => (
-              <div data-testid="movie-card" key={movie.id} className={styles.movieCard}>
+              <div key={movie.id} className={styles.movieCard} data-testid="movie-card">
                 <Link href={`/movie/${movie.id}`} className={styles.movieLink}>
                   <img src={movie.poster_image} alt={movie.name} className={styles.moviePoster} />
                   <h2 className={`${styles.movieTitle}`}>{movie.name}</h2>
@@ -219,10 +219,6 @@ export interface MovieData {
           }} selectedMovie={selectedMovie} />
       )}
     </div>
-  );
-};
+  )}
 
-export default Home;
-function onCloseAndUpdateMovie(movieData: MovieData) {
-  throw new Error('Function not implemented.');
-}
+  export default Home;
