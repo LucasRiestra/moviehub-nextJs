@@ -29,7 +29,11 @@ To install and run the project, follow these steps:
 1. Clone the repository to your local machine.
 2. Navigate to the project directory.
 3. **IMPORTANT:** Before running the project, make sure to first set up and run the backend project available at [https://github.com/LucasRiestra/Movie-Hub](https://github.com/LucasRiestra/Movie-Hub).
-4. Install the dependencies with `npm install`.
+   - Clone the backend repository to your local machine.
+   - Navigate to the backend project directory.
+   - Install the backend dependencies with `npm install`.
+   - Start the backend server with `npm run dev`. The backend will be accessible at [http://localhost:4001](http://localhost:4001).
+4. Install the dependencies for the MovieHub project with `npm install`.
 5. Start the development server with `npm run dev`.
 6. Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
 
